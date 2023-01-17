@@ -8,5 +8,5 @@ const linearSearch = (haystack: number[], needle: number): boolean => {
 };
 
 const arr = [1, 2, 3, 4, 5];
-console.log(linearSearch(arr, 3)); // true
-console.log(linearSearch(arr, 7)); // false
+console.log(linearSearch(arr, 3));
+console.log(!linearSearch(arr, 7));
