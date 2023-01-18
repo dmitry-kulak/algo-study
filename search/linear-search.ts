@@ -7,6 +7,4 @@ const linearSearch = (haystack: number[], needle: number): boolean => {
   return false;
 };
 
-const arr = [1, 2, 3, 4, 5];
-console.log(linearSearch(arr, 3));
-console.log(!linearSearch(arr, 7));
+export default linearSearch;
