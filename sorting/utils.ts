@@ -1,19 +1,18 @@
 import {compose, equals, identity, sortBy, tap} from 'ramda';
 
+export type SortFn = (array: number[]) => number[];
+
 const generateArray = (length = 20): number[] => {
   return Array.from({length}, () => Math.floor(Math.random() * 1000));
 };
 
 const trueSort = sortBy(identity);
 
-const checkIfSorted = (array: number[]): boolean => {
-  console.log('bubble', array);
-  const sortedArray = trueSort(array);
-  console.log('sorted', sortedArray);
-  return equals(array, sortedArray);
-};
+const checkIfSorted = (array: number[]): boolean => equals(array, trueSort(array));
 
-export type SortFn = (array: number[]) => number[];
-const log = tap(console.log);
-export const testSort = (sortFn: SortFn) => compose(checkIfSorted, sortFn, log, generateArray);
+const logger = (step = 1) => tap<number[]>(array => console.log(`step ${step++}`, array));
+export const testSort = (sortFn: SortFn) => {
+  const log = logger();
+  return compose(checkIfSorted, log, sortFn, log, generateArray)();
+};
 
