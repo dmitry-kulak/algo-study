@@ -9,8 +9,7 @@ class ArrayList<T> {
 
   push(item: T): number {
     if (this.length >= this.capacity) {
-      this.capacity *= 2;
-      this.array = this.array.slice();
+      this.expandList();
     }
 
     this.array[this.length] = item;
@@ -30,6 +29,10 @@ class ArrayList<T> {
   }
 
   enqueue(item: T) {
+    if (this.length >= this.capacity) {
+      this.expandList();
+    }
+
     for (let i = this.length; i >= 0; i--) {
       if (!i) this.array[i] = item;
       else this.array[i] = this.array[i - 1];
@@ -37,6 +40,7 @@ class ArrayList<T> {
     this.length++;
     return this.length;
   }
+
 
   dequeue(): T | void {
     if (!this.length) return;
@@ -50,4 +54,10 @@ class ArrayList<T> {
 
     return item;
   }
+
+  private expandList() {
+    this.capacity *= 2;
+    this.array = this.array.slice();
+  }
+
 }
