@@ -12,7 +12,7 @@ const checkIfSorted = (array: number[]): boolean => equals(array, trueSort(array
 
 const logger = (step = 1) => tap<number[]>(array => console.log(`step ${step++}`, array));
 export const testSort = (sortFn: SortFn) => {
-  const log = logger();
-  return compose(checkIfSorted, log, sortFn, log, generateArray)();
+  // const log = logger();
+  return compose(checkIfSorted, sortFn, generateArray)();
 };
 
