@@ -10,9 +10,9 @@ const trueSort = sortBy(identity);
 
 const checkIfSorted = (array: number[]): boolean => equals(array, trueSort(array));
 
-const logger = (step = 1) => tap<number[]>(array => console.log(`step ${step++}`, array));
-export const testSort = (sortFn: SortFn) => {
-  // const log = logger();
-  return compose(checkIfSorted, sortFn, generateArray)();
+const logger = (step: number, shouldLog: boolean) => tap<number[]>(array => shouldLog && console.log(`step ${step++}`, array));
+export const testSort = (sortFn: SortFn, shouldLog = false) => {
+  const log = logger(1, shouldLog);
+  return compose(checkIfSorted, log, sortFn, log, generateArray)();
 };
 
