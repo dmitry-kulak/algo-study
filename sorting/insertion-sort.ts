@@ -1,4 +1,6 @@
-export const insertionSort = (arr: number[]): number[] => {
+import {SortFn} from './utils';
+
+export const insertionSort: SortFn = (arr) => {
   const copy = arr.slice();
 
   for (let i = 1; i < copy.length; i++) {
